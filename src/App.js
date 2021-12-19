@@ -3,13 +3,14 @@ import Products from './components/foodMenu/Products'
 import StartApp from './components/startApp/StartApp'
 import ShopCart from './components/shopCart/ShopCart';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Provider } from  "react-redux"
+import store from "./store"
 import './App.css';
 import './index.css'
 
 function App() {
   // -------state of the selected products------
   const [arrayCart, setArrayCart] = useState([])
-  // console.log(arrayCart)
 
   // -------total value------
   const [totalValue, setTotalValue] = useState(0)
@@ -30,33 +31,35 @@ function App() {
     }, [arrayCart])
 
   return (
-    <Router>
-      <div className="fullScreen">
+    <Provider store={store}>
+      
+      <Router>
+        <div className="fullScreen">
 
-        <Switch>
-          <Route path="/shopcart">
-            <ShopCart
-              arrayCart={arrayCart}
-              setArrayCart={setArrayCart}
-              totalValue={totalValue}
-            />
-          </Route>
-          <Route path="/products">
-            <Products 
-              arrayCart={arrayCart}
-              setArrayCart={setArrayCart}
-              totalValue={totalValue}
-              setTotalValue={setTotalValue}
-            />
-          </Route>
-          <Route path="/">
-            <StartApp />
-          </Route>
-        </Switch>
-      </div>
+          <Switch>
+            <Route path="/shopcart">
+              <ShopCart
+                arrayCart={arrayCart}
+                setArrayCart={setArrayCart}
+                totalValue={totalValue}
+              />
+            </Route>
+            <Route path="/products">
+              <Products 
+                arrayCart={arrayCart}
+                setArrayCart={setArrayCart}
+                totalValue={totalValue}
+                setTotalValue={setTotalValue}
+              />
+            </Route>
+            <Route path="/">
+              <StartApp />
+            </Route>
+          </Switch>
+        </div>
 
-
-    </Router>
+      </Router>
+    </Provider>
   );
 }
 

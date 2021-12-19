@@ -1,37 +1,27 @@
 import React from 'react'
-import allProducts from '../../../assets/image'
-import Burger from './ProductRend'
+import ProductRender from './ProductRend'
+import { connect } from "react-redux"
 
-const Product = ({nameCategory, arrayCart, setArrayCart}) => {
+const Product = ({arrayCart, setArrayCart, selectedProducts}) => {
 
   
   return (
     <>
-    {allProducts.map( product => 
-      product.category === nameCategory
-    ? (
+    {selectedProducts.map( product => 
 
-      <Burger 
-      title={product.title}
-      description={product.description}
-      image={product.img}
-      price={product.unPrice}
-      arrayCart={arrayCart}
-      setArrayCart={setArrayCart}
-      id={product.id}
-      key={product.id}
-    />
-    ) : null
+        <ProductRender 
+          product={product}
+          key={product.id}
+      />
     )}
     </>
   )
 }
 
-export default Product
- // const [products, setProducts] = useState()
-  // let productFilter = allProducts.filter(product => product.category === nameCategory)
+const mapStateToProps = state => ({
+  selectedProducts : state.selectedProducts
+})
+const mapDispatchToProps = dispatch => ({})
 
-  // useEffect(()=>{
-  //   setProducts(productFilter)
-  //   console.log(products)
-  // }, [])
+export default connect(mapStateToProps, mapDispatchToProps)(Product)
+

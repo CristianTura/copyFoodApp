@@ -1,16 +1,19 @@
 import React  from 'react'
 import { Icon } from '@iconify/react';
 import { Link } from "react-router-dom";
+import { connect } from "react-redux"
 import './total.css'
 
-const Total = ({arrayCart, totalValue, setTotalValue}) => {
+const Total = ({arrayCart, totalValue, productsCart}) => {
 
-  let sum = arrayCart.length
+  let sum = productsCart.length
 
   // if(window.innerHeight > 1200){
   //   let iconcart = document.querySelector('.iconCart').height = 55
   // }
 // console.log(window.innerWidth, window.innerHeight)
+// console.log(totalValue)
+
   return (
     <div className="totalProduct">
       <div className="totalPrice">
@@ -33,4 +36,12 @@ const Total = ({arrayCart, totalValue, setTotalValue}) => {
   )
 }
 
-export default Total
+const mapStateToProps = state => ({
+	productsCart: state.productsCart,
+	totalValue : state.totalValue
+})
+
+const mapDispatchToProps = dispatch => ({})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Total)
+

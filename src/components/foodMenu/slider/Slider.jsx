@@ -1,14 +1,10 @@
 import React from 'react'
-import allProducts from '../../../assets/image'
+import dataProducts from '../../../assets/data'
 import './slider.css'
 import Icons from './Icon'
 import { Icon } from '@iconify/react';
 
 const Slider = ({updateCategory}) => {
-  // let containerSlider
-  // useEffect(() => { 
-  //   containerSlider = document.querySelector('.containerSlider')
-  // }, [])
 
   const scrollRight = () =>{
     document.querySelector('.containerSlider').scrollLeft += document.querySelector('.containerSlider').offsetWidth
@@ -20,17 +16,18 @@ const Slider = ({updateCategory}) => {
   return (
     <div className="containerArrow">
       <div className="containerSlider">
-        {allProducts.map(icon => 
-          icon.category === 'icons' ?
-        (
+        {dataProducts.map(icon => 
+        //   icon.category === 'icons' ?
+        // (
             <Icons
               image={icon.img}
               name={icon.name}
               id={icon.id}
               key={icon.id}
               updateCategory={updateCategory}
+              products={icon.products}
             />
-          ) : null
+          // ) : null
           )}
       </div>
         <Icon icon="ant-design:double-left-outlined" height="30" className="sliderLeft" id="arrowLeft" onClick={scrollLeft}/>

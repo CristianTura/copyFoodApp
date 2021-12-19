@@ -19,11 +19,10 @@ const Products = ({arrayCart, setArrayCart, totalValue, setTotalValue}) => {
       </header>
 
       <h3>Categorías</h3>  
-      <Slider updateCategory={updateCategory}/>
+      <Slider/>
       
       <div className="containerProducts">
        <Product 
-        nameCategory={nameCategory} 
         setArrayCart={setArrayCart}
         arrayCart={arrayCart}
         />
@@ -31,7 +30,6 @@ const Products = ({arrayCart, setArrayCart, totalValue, setTotalValue}) => {
 
       <Total
         arrayCart={arrayCart}
-        totalValue={totalValue}
         setTotalValue={setTotalValue}
       />
 
@@ -42,4 +40,4 @@ const Products = ({arrayCart, setArrayCart, totalValue, setTotalValue}) => {
   )
 }
 
-export default Products
+export default  Products
